@@ -1,0 +1,24 @@
+# netlify.toml
+
+# [build] section for build-related settings
+[build]
+  # Specify the build command
+  command = "python manage.py collectstatic --noinput && python manage.py migrate"
+
+  # Specify the directory where Netlify looks for serverless functions
+  functions = "functions"
+
+  # Redirects configuration
+  [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
+
+# [context.production.environment] section for setting environment variables
+[context.production.environment]
+  # Set environment variables specifically for the production environment
+  DJANGO_SETTINGS_MODULE = "whisper_transcription.settings.production"
+  SECRET_KEY = 'django-insecure-ya)11r*2!1y$z3^6!96!u3ze^s7_p&%538odv4@48uu%w_55+%'
+  DEBUG = "False"
+  # Add other production-specific environment variables
+  YOUR_API_KEY = "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"
